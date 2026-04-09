@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Dashboard | MINDEASE</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="dashboard-section">
+
+    <h1 class="dashboard-title">Your Dashboard</h1>
+
+    <div class="dashboard-cards">
+
+        <!-- MOOD TRACKER -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/mood.png') }}" alt="Mood Tracker">
+            <p>Sifting through daily emotions</p>
+            <a href="/mood">
+                <button>Open</button>
+            </a>
+        </div>
+
+        <!-- JOURNAL -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/journal.png') }}" alt="Journal">
+            <p>Write and reflect freely</p>
+            <a href="/journal">
+                <button>Open</button>
+            </a>
+        </div>
+
+        <!-- MUSIC THERAPY -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/music.png') }}" alt="Music Therapy">
+            <p>Find music for your mood</p>
+            <a href="/music">
+                <button>Open</button>
+            </a>
+        </div>
+
+        <!-- RELAXATION -->
+        <div class="dashboard-card-ui">
+            <img src="{{ url_for('static', filename='images/relax.png') }}" alt="Relaxation">
+            <p>Calm your mind and body</p>
+            <a href="/relax">
+                <button>Open</button>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
