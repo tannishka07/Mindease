@@ -10,6 +10,13 @@
 <div class="dashboard-card">
     <h1>Music Therapy 🎵</h1>
     <p>Select music based on your mood</p>
+    <h3>Select Your Mood 👇</h3>
+
+    <button onclick="getMusic('happy')">😊 Happy</button>
+    <button onclick="getMusic('sad')">😢 Sad</button>
+    <button onclick="getMusic('stressed')">😣 Stressed</button>
+
+    <div id="musicResult"></div>
 
     <!-- Calm Music -->
     <h3>🌿 Calm & Stress Relief</h3>
@@ -50,7 +57,7 @@
     <!-- Devotional / Spiritual -->
     <h3>🙏 Devotional & Spiritual</h3>
     <iframe style="border-radius:12px"
-        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX6GwdWRQMQpq"
+        src="https://open.spotify.com/playlist/7eiJ7L7ptVnTccJMNW1sXf?si=x1zjDVPcQXKW8NybTIrzKw&pi=VofAS1dCQZ-R1"
         width="100%" height="380"
         frameborder="0"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -75,6 +82,25 @@
         <button class="dash-btn logout-btn">Back</button>
     </a>
 </div>
+<script>
+function getMusic(mood) {
+    fetch("/get_music", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ mood: mood })
+    })
+    .then(res => res.json())
+    .then(data => {
+        let div = document.getElementById("musicResult");
+        div.innerHTML = "<h4>Recommended:</h4>";
 
+        data.songs.forEach(song => {
+            div.innerHTML += "<p>" + song + "</p>";
+        });
+    });
+}
+</script>
 </body>
 </html>

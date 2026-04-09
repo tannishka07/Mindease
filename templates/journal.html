@@ -24,7 +24,7 @@
                 Write freely. No judgment. This space is yours.
             </p>
 
-            <textarea placeholder="Start writing here..."></textarea>
+            <textarea id="leftText" placeholder="Start writing here..."></textarea>
         </div>
 
         <!-- CENTER SPINE -->
@@ -34,17 +34,36 @@
         <div class="page right-page">
             <h2>Reflections 🌿</h2>
 
-            <textarea placeholder="What did you learn today?"></textarea>
+            <textarea id="rightText" placeholder="What did you learn today?"></textarea>
         </div>
 
     </div>
 
     <div class="journal-actions">
-        <button class="save-btn">Save</button>
+        <button class="save-btn" onclick="saveJournal()">Save</button>
         <a href="/dashboard"><button class="back-btn">Back</button></a>
     </div>
 
 </div>
+<script>
+function saveJournal() {
+    let left = document.getElementById("leftText").value;
+    let right = document.getElementById("rightText").value;
 
+    let fullText = left + " | " + right;
+
+    fetch("/save_journal", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ text: fullText })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+</script>
 </body>
 </html>

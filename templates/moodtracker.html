@@ -5,13 +5,28 @@
     </p>
 
     <div class="card-grid">
-        <div class="soft-card">😊 Happy</div>
-        <div class="soft-card">😌 Calm</div>
-        <div class="soft-card">😔 Sad</div>
-        <div class="soft-card">😣 Stressed</div>
+       <div class="soft-card" onclick="sendMood('happy')">😊 Happy</div>
+       <div class="soft-card" onclick="sendMood('calm')">😌 Calm</div>
+       <div class="soft-card" onclick="sendMood('sad')">😔 Sad</div>
+       <div class="soft-card" onclick="sendMood('stressed')">😫 Stressed</div>
     </div>
 
     <div class="section-cta">
         <a href="/dashboard"><button>Back to Dashboard</button></a>
     </div>
 </div>
+<script>
+function sendMood(mood) {
+    fetch("/save_mood", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ mood: mood })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+    });
+}
+</script>
